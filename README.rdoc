@@ -1,0 +1,75 @@
+= taskbot
+
+Simple to-do lists implemented as an IRC robot
+
+Features:
+* Feature 1
+* Feature 2
+* Feature 3
+
+It is distributed as a Ruby gem and based on Cinch and MongoDB.
+
+== Installation & Setup
+
+1. Install Ruby 1.9 and rubygems if you don't already have it.
+
+2. Install taskbot
+
+  $ gem install taskbot
+  Successfully installed taskbot-0.1.0
+  1 gem installed
+
+3. Set up a MongoDB database to store users information in. I recommend creating a free account at https://mongohq.com
+
+4. Create a configuration file
+
+  $ taskbot --setup ~/.taskbot
+  taskbot v0.1.0 - Simple to-do lists implemented as an IRC robot
+
+  IRC Configuration
+  -----------------
+  IRC Nick: TaskBot
+  IRC Server: irc.myserver.net
+  For password protected channels, type "#channel PASSWORD"
+  Channel: #mychannel
+  Database Configuration
+  ----------------------
+  You can get free MongoDB hosting from http://mongohq.com
+  MongoDB Host: dbhost
+  MongoDB Port: 6000 
+  MongoDB Database: taskbot
+  MongoDB Username: taskbot
+  MongoDB Password: taskbot
+
+  File written.
+  Use taskbot -f ~/.taskbot to launch your bot.
+
+5. Launch your new IRC bot!
+
+  $ taskbot -f ~/.taskbot
+
+Use --daemonize if you want to run it in the background.
+
+== Usage
+
+Explore the options and features available with !task help
+
+== Getting Help
+
+When all else fails, read the code!
+
+== Contributing to taskbot
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Copyright (c) 2011 Logan Koester. See LICENSE.txt for
+further details.
+

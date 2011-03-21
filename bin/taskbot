@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'daemons'
+require 'optiflag'
+require 'yaml'
+
+APP_VERSION = File.read("#{File.dirname(__FILE__)}/../VERSION")
+
+def ask(q)
+  print q
+  a = STDIN.gets.chomp
+  return a
+end
+
+module App extend OptiFlagSet
+  optional_flag "file" do
+    alternate_forms "f"
+    description "Path to a configuration file"
+  end
+
+  optional_flag "setup" do
+    description "Generate a configuration file"
+  end
+
+  optional_switch_flag "daemonize" do
+    alternate_forms "d"
+    description "Run this process in the background"
+  end
+  
+  and_process!
+end
+
+puts "taskbot v#{APP_VERSION} - Simple to-do lists implemented as an IRC robot"
+
+flag = App.flags
+
+if flag.file
+  Daemons.daemonize if flag.daemonize?
+  puts "Using configuration at #{flag.file}"
+  $config = YAML.load_file(flag.file)
+  require File.expand_path("#{File.dirname(__FILE__)}/../lib/taskbot.rb")
+elsif flag.setup
+  $config = {'mongodb' => {}}
+
+  puts
+  puts "IRC Configuration"
+  puts "-----------------"
+  $config['nick'] = ask "IRC Nick: "
+  $config['server'] = ask "IRC Server: "
+  puts "For password protected channels, type \"#channel PASSWORD\""
+  $config['channels'] = [ask("Channel: ")]
+
+  puts "Database Configuration"
+  puts "----------------------"
+  puts "You can get free MongoDB hosting from http://mongohq.com"
+  $config['mongodb']['host'] = ask "MongoDB Host: "
+  $config['mongodb']['port'] = ask "MongoDB Port: "
+  $config['mongodb']['database'] = ask "MongoDB Database: "
+  $config['mongodb']['username'] = ask "MongoDB Username: "
+  $config['mongodb']['password'] = ask "MongoDB Password: "
+
+  File.open(flag.setup, 'w+') { |f| f << $config.to_yaml }
+  puts
+  puts "File written."
+  puts "Use taskbot -f #{flag.setup} to launch your bot."
+else
+  puts "Use taskbot --help for usage"
+end

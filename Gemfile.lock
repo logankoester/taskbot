@@ -1,0 +1,37 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.0.5)
+    bson (1.2.4)
+    bson_ext (1.2.4)
+    cinch (1.1.2)
+    daemons (1.1.0)
+    git (1.2.5)
+    jeweler (1.5.2)
+      bundler (~> 1.0.0)
+      git (>= 1.2.5)
+      rake
+    jnunemaker-validatable (1.8.4)
+      activesupport (>= 2.3.4)
+    mongo (1.2.4)
+      bson (>= 1.2.4)
+    mongo_mapper (0.8.6)
+      activesupport (>= 2.3.4)
+      jnunemaker-validatable (~> 1.8.4)
+      plucky (~> 0.3.6)
+    optiflag (0.7)
+    plucky (0.3.7)
+      mongo (~> 1.1)
+    rake (0.8.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bson_ext (~> 1.2.4)
+  bundler (~> 1.0.0)
+  cinch (~> 1.1.2)
+  daemons (~> 1.1.0)
+  jeweler (~> 1.5.2)
+  mongo_mapper (~> 0.8.6)
+  optiflag (~> 0.7)
