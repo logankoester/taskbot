@@ -4,6 +4,19 @@ Simple to-do lists implemented as an IRC robot
 
 It is distributed as a Ruby gem and based on Cinch and MongoDB.
 
+== Usage
+
+  <&logankoester> !task help
+  < TaskBot> Simple to-do lists implemented as an IRC robot
+  < TaskBot> !task add "Take out the trash" - Add a task for yourself
+  < TaskBot> !task add <nick> "Take out the trash" - Add a task for <nick>
+  < TaskBot> !task complete|finish #<task_id> - Mark a task completed
+  < TaskBot> !task rm|delete|remove #<task_id> - Remove a task
+  < TaskBot> !task list - Get a list of your uncompleted tasks
+  < TaskBot> !task list <nick> - Get a list of <nick>'s uncompleted tasks
+  < TaskBot> Author: Logan Koester <logan@logankoester.com>
+  < TaskBot> Fork me at https://github.com/logankoester/taskbot>
+
 == Installation & Setup
 
 1. Install Ruby 1.9 and rubygems if you don't already have it.
