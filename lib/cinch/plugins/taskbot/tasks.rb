@@ -81,7 +81,7 @@ module Cinch
           user_status = (user.nil?) ? "New user '#{nick}' created" : "Existing user '#{nick}' found"
           user ||= User.create( :nick => nick )
           task = user.tasks.create( :content => content )
-          m.reply "#{user_status}, task added as #{task.id}"
+          m.reply "#{user_status}, task added as ##{task.id}"
           return task
         end
 

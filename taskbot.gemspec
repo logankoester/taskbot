@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/cinch/plugins/taskbot/tasks.rb",
     "lib/cinch/plugins/taskbot/user.rb",
     "lib/taskbot.rb",
+    "sc2cinch.gemspec",
     "taskbot.gemspec"
   ]
   s.homepage = %q{http://github.com/logankoester/taskbot}
