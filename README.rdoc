@@ -2,11 +2,6 @@
 
 Simple to-do lists implemented as an IRC robot
 
-Features:
-* Feature 1
-* Feature 2
-* Feature 3
-
 It is distributed as a Ruby gem and based on Cinch and MongoDB.
 
 == Installation & Setup
