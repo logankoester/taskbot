@@ -7,8 +7,8 @@ module Cinch
         match /add "(.+)"/, :method => :add_task
         match /add (.+) "(.+)"/, :method => :add_task_for
 
-        match /complete|finish #(.+)/, :method => :complete_task
-        match /rm|delete|remove #(.+)/, :method => :remove_task
+        match /(complete|finish) #(\d+)/, :method => :complete_task
+        match /(rm|delete|remove) #(\d+)/, :method => :remove_task
 
         match /list$/, :method => :get_list
         match /list (.+)/, :method => :get_list_for
@@ -49,18 +49,18 @@ module Cinch
         end
 
         # Mark a task completed
-        def complete_task(m, task_id)
-          set_task_status(m, task_id, :completed)
+        def complete_task(m, cmd_alias, task_id2)
+          set_task_status(m, task_id2.to_i, :completed)
         end
         
         # Remove a task
-        def remove_task(m, task_id)
-          task = Task.find(task_id)
+        def remove_task(m, cmd_alias, task_id2)
+          task = Task.find_by_id2(task_id2.to_i)
           if task
-            Task.destroy(task_id)
-            m.reply "Task ##{task_id} has been removed."
+            task.destroy
+            m.reply "Task ##{task_id2} has been removed."
           else
-            m.reply "Task ##{task_id} not found."
+            m.reply "Task ##{task_id2} not found."
           end
         end
 
@@ -81,7 +81,7 @@ module Cinch
           user_status = (user.nil?) ? "New user '#{nick}' created" : "Existing user '#{nick}' found"
           user ||= User.create( :nick => nick )
           task = user.tasks.create( :content => content )
-          m.reply "#{user_status}, task added as ##{task.id}"
+          m.reply "#{user_status}, task added as ##{task.id2}"
           return task
         end
 
@@ -90,24 +90,26 @@ module Cinch
           user = User.find_by_nick(nick)
           user_status = (user.nil?) ? "New user '#{nick}' created" : "Existing user '#{nick}' found"
           user ||= User.create( :nick => nick )
-          open_tasks = user.tasks.map { |t| t if t.status == :open }
+          open_tasks = user.tasks.select { |t| t if t.status == :open }
           if open_tasks.empty?
             m.reply "#{user_status}, no open tasks."
           else
             m.reply "#{user_status}, open tasks:"
-            open_tasks.each { |t| m.reply "##{t._id} #{t.content}" }
+            open_tasks.sort_by { |t| t.id2 }.each do |t| 
+              m.reply "##{t.id2} #{t.content}"
+            end
           end
         end
 
-        def set_task_status(m, task_id, new_status)
-          task = Task.find(task_id)
+        def set_task_status(m, task_id2, new_status)
+          task = Task.find_by_id2(task_id2.to_i)
           if task
             old_status = task.status
             task.status = new_status
             task.save
-            m.reply "Task ##{task.id} status changed from #{old_status} to #{task.status}"
+            m.reply "Task ##{task.id2} status changed from #{old_status} to #{task.status}"
           else
-            m.reply "Task ##{task_id} not found."
+            m.reply "Task ##{task.id2} not found."
           end
         end
 

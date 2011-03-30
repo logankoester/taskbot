@@ -58,9 +58,11 @@ It is distributed as a Ruby gem and based on Cinch and MongoDB.
 
 Use --daemonize if you want to run it in the background.
 
-== Usage
+== Changes
 
-Explore the options and features available with !task help
+0.1.1 - Fixes a bug preventing tasks from being removed correctly, and shortens visible task
+        identifiers to a simple integer. If you're updating an existing db from 0.1.0 you 
+        will need to add a unique integer 'id2' to each task manually.
 
 == Getting Help
 

@@ -19,6 +19,11 @@ GEM
       activesupport (>= 2.3.4)
       jnunemaker-validatable (~> 1.8.4)
       plucky (~> 0.3.6)
+    mongomapper_id2 (0.0.3)
+      activesupport (>= 2.3.4)
+      jnunemaker-validatable (~> 1.8.4)
+      mongo_mapper
+      plucky (~> 0.3.6)
     optiflag (0.7)
     plucky (0.3.7)
       mongo (~> 1.1)
@@ -34,4 +39,5 @@ DEPENDENCIES
   daemons (~> 1.1.0)
   jeweler (~> 1.5.2)
   mongo_mapper (~> 0.8.6)
+  mongomapper_id2 (~> 0.0.3)
   optiflag (~> 0.7)

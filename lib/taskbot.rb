@@ -1,4 +1,4 @@
-%w{rubygems cinch mongo_mapper}.each { |d| require d }
+%w{rubygems cinch mongo_mapper mongomapper_id2}.each { |d| require d }
 
 require "#{File.dirname(__FILE__)}/cinch/plugins/taskbot"
 
