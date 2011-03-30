@@ -60,9 +60,9 @@ Use --daemonize if you want to run it in the background.
 
 == Changes
 
-0.1.1 - Fixes a bug preventing tasks from being removed correctly, and shortens visible task
-        identifiers to a simple integer. If you're updating an existing db from 0.1.0 you 
-        will need to add a unique integer 'id2' to each task manually.
+0.1.2 - Fixes a bug preventing tasks from being removed correctly, and shortens visible task
+        identifiers to a simple integer. If you're updating an existing db you will need to 
+        add a unique integer 'id2' to each task manually.
 
 == Getting Help
 
