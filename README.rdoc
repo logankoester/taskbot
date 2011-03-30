@@ -64,6 +64,12 @@ Use --daemonize if you want to run it in the background.
 identifiers to a simple integer. If you're updating an existing db you will need to 
 add a unique integer 'id2' to each task manually.
 
+== TODO
+
+* Unique user identification (currently using nick) or at least aliases
+* Integrate Hoptoad and error handling
+* Add Remember The Milk integration
+
 == Getting Help
 
 When all else fails, read the code!
